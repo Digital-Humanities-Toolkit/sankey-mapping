@@ -14,7 +14,7 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   ></script>
   
-<script src="scripts/spatialsankey.js?test=1"></script>
+<script src="scripts/spatialsankey.js"></script>
 
 </head>
 
@@ -41,8 +41,8 @@
     map.getPane('labels').style.pointerEvents = 'none';
 
     map.createPane('circles');
-    map.getPane('circles').style.zIndex = 20;
-    map.getPane('circles').style.pointerEvents = 'visible';
+    //map.getPane('circles').style.zIndex = 20;
+    //map.getPane('circles').style.pointerEvents = 'visible';
 
     var positron = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             'attribution': 'Map data &copy; OpenStreetMap contributors',
@@ -122,10 +122,9 @@
                 .attr("r", node.r)
                 .attr("opacity", 0.7)
                 .style("fill", node.fill)
-                .style("display", node.display)
                 .on("mouseover", mouseover)
                 .on("mouseout", mouseout)
-            
+            console.log(circs)
                 // Adopt size of drawn objects after leaflet zoom reset
             var zoomend = function(){
                 linklayer.selectAll("path").attr("d", spatialsankey.link());

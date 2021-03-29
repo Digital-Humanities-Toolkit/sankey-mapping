@@ -9,8 +9,6 @@
           flows = [],
           node_flow_range = {},
           link_flow_range = {},
-          remove_zero_links = true,
-          remove_zero_nodes = true,
           version = '0.0.5';
     
       // Get or set leaflet map instance
@@ -53,7 +51,7 @@
           return node;
         });
     
-        // Calculate gobal ranges of values for links and nodes
+        // Calculate global ranges of values for links and nodes
         link_flow_range.min = d3.min(links, function(link) { return link.flow; });
         link_flow_range.max = d3.max(links, function(link) { return link.flow; });
     
@@ -118,8 +116,6 @@
             sy = 0.1;
         // With range of lines, set min and max to be equal for a constant width.
         var width_range = {min: 1, max: 8};
-        // If true, links are only shown if there is a flow value for them
-        var hide_zero_flows = true;
         // Use arcs instead of S shaped bezier curves
         var arcs = false;
         // If true, lines are flipped along x axis
