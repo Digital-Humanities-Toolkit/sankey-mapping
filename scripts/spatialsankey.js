@@ -215,7 +215,8 @@
           return cy;
         };
         node.r = function(d) {
-          if (d.properties.aggregate_outflows == 0) return 0;
+          //the next line hides any circles without outflows, which we don't want
+          //if (d.properties.aggregate_outflows == 0) return 0;
           var diff = d.properties.aggregate_outflows - node_flow_range.min,
               range = node_flow_range.max - node_flow_range.min;
           return (node_radius_range.max - node_radius_range.min)*(diff/range) + node_radius_range.min;
