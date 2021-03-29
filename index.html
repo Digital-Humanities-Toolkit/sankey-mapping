@@ -41,8 +41,8 @@
     map.getPane('labels').style.pointerEvents = 'none';
 
     map.createPane('circles');
-    //map.getPane('circles').style.zIndex = 20;
-    //map.getPane('circles').style.pointerEvents = 'visible';
+    map.getPane('circles').style.zIndex = 20;
+    map.getPane('circles').style.pointerEvents = 'visible';
 
     var positron = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             'attribution': 'Map data &copy; OpenStreetMap contributors',
@@ -68,7 +68,6 @@
     d3.json("data/data.geojson", function (nodes) {
         d3.csv("data/links.csv", function (links) {
 
-            console.log(nodes)
             // Setup spatialsankey object
             var spatialsankey = d3.spatialsankey()
                 .lmap(map)
@@ -96,7 +95,7 @@
                 // Remove old links
                 beziers.exit().remove();
                 // Hide inactive nodes
-                var circleUnderMouse = this;
+                //var circleUnderMouse = this;
                 circs.transition().style('opacity',function () {
                     return (this === circleUnderMouse) ? 0.7 : 0.5;
                 });
@@ -124,7 +123,7 @@
                 .style("fill", node.fill)
                 .on("mouseover", mouseover)
                 .on("mouseout", mouseout)
-            console.log(circs)
+            
                 // Adopt size of drawn objects after leaflet zoom reset
             var zoomend = function(){
                 linklayer.selectAll("path").attr("d", spatialsankey.link());
