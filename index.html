@@ -44,7 +44,7 @@
     map.getPane('circles').style.zIndex = 20;
     map.getPane('circles').style.pointerEvents = 'visible';
 
-    var positron = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var positron = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             'attribution': 'Map data &copy; OpenStreetMap contributors',
             'pane': 'labels'
             }).addTo(map);
