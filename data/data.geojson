@@ -1,0 +1,160 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"id": "BENIN",
+			"properties": {"name": "The Ancient city of Benin"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [5.622081756591797, 6.334407588395717]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "BERLIN",
+			"properties": { "name": "The Ethnographical Museum of Berlin"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [13.404954, 52.520008]
+
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "LONDON",
+			"properties": { "name": "The British Museum"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-0.118092, 51.509865]
+
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ABERDEEN",
+			"properties": { "name": "The University of Aberdeen"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-2.09814, 57.14369]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "OXFORD",
+			"properties": { "name": "The Pitt Rivers Museum, Oxford"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-1.25506, 51.75876]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "VIENNA",
+			"properties": { "name": "Weltmuseum Wien"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [16.36389, 48.20490]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "HAMBURG",
+			"properties": { "name": "Museum of Ethnology, Museum of Arts and Crafts"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [10.00933, 53.55129]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "DRESDEN",
+			"properties": { "name": "Dresden Museum of Ethnology"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [13.73763, 51.05994]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "NEWYORK",
+			"properties": { "name": "Metropolitan Museum"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-73.96338, 40.77944]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "PHILADELPHIA",
+			"properties": { "name": "University of Pennsylvania Museum of Archaeology and Anthropology"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-75.19199, 39.94923]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "LEIDEN",
+			"properties": { "name": "National Museum of Ethnology"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [4.48251, 52.16312]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "LEIPZIG",
+			"properties": { "name": "Museum of Ethnography"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [12.38860, 51.33773]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "COLOGNE",
+			"properties": { "name": "Rautenstrauch-Joest Museum"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [6.95036, 50.93452]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "BOSTON",
+			"properties": { "name": "Museum of Fine Arts"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-71.09390, 42.33946]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ZURICH",
+			"properties": { "name": "Rietberg Museum"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [8.52974, 47.35892]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "DALLAS",
+			"properties": { "name": "Dallas Museum of Art"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-96.80134, 32.78783]
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "SANFRANCISCO",
+			"properties": { "name": "De Young Museum"},			
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-122.46913, 37.77148]
+			}
+		}
+	]
+}

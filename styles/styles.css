@@ -1,0 +1,41 @@
+
+
+
+
+body {
+    position: absolute;
+    width:100%;
+    height: 100%;
+    margin: 0px;
+    font-family: 'open Sans','Helvetica Neue','Helvetica','Arial',sans-serif;
+    /*text-shadow: 0 0 1px rgba(255, 255, 255, 0.58);*/
+}
+
+
+#map {
+    width: 100%;
+    height: 100%;
+    top:0px;
+    left:0px;
+    right:0px;
+}
+
+
+path {
+    pointer-events: visible !important;
+    cursor: pointer;
+}
+
+path.curve {
+    stroke: #00a5ff;
+    stroke-opacity: 0.4;
+    stroke-linecap: round;
+    pointer-events: visible !important;
+}
+
+path:hover {
+    stroke-opacity: 0.8;
+    stroke: #007bbf;
+
+}
+

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>Pathways of the Benin Bronzes</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  />
+<link rel="stylesheet" href="styles/styles.css"
+  />
+
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  ></script>
+  
+<script src="scripts/spatialsankey.js?test=1"></script>
+
+</head>
+
+<body>
+    <div id="map"></div>
+
+
+<script type="text/javascript">
+
+
+    // Set leaflet map
+    var mySVG = L.svg();
+
+    var map = L.map('map', {
+        zoomControl: false,
+        center: [5.622081756591797, 6.334407588395717],
+        zoom: 3
+    });
+
+    
+
+    map.createPane('labels');
+    map.getPane('labels').style.zIndex = 10;
+    map.getPane('labels').style.pointerEvents = 'none';
+
+    map.createPane('circles');
+    map.getPane('circles').style.zIndex = 20;
+    map.getPane('circles').style.pointerEvents = 'visible';
+
+    var positron = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            'attribution': 'Map data &copy; OpenStreetMap contributors',
+            'pane': 'labels'
+            }).addTo(map);
+
+    L.control.zoom({position: "bottomright"}).addTo(map);
+
+    // Initialize the SVG layer
+    var svgLayer = L.svg({'pane': 'circles'}).addTo(map);
+
+    // Setup svg element to work with
+    var svg = d3.select("#map").select("svg"),
+        linklayer = svg.append("g");
+        nodelayer = svg.append("g");
+        
+        //Leaflet sets all svgs to have no pointer-events, so remove that
+        d3.selectAll("svg").attr("pointer-events", "visible");
+        
+    map.addLayer(svgLayer);
+
+    // Load data async
+    d3.json("data/data.geojson", function (nodes) {
+        d3.csv("data/links.csv", function (links) {
+
+            console.log(nodes)
+            // Setup spatialsankey object
+            var spatialsankey = d3.spatialsankey()
+                .lmap(map)
+                .nodes(nodes.features)
+                .links(links);
+            
+                var mouseover = function (d) {
+                // Get link data for this node
+                var nodelinks = spatialsankey.links().filter(function (link) {
+                    return link.source == d.id;
+                });
+                // Add data to link layer
+                var beziers = linklayer.selectAll("path").data(nodelinks);
+                link = spatialsankey.link({'use_arcs': true, 'flip': false});
+                
+                // Draw new links
+                beziers.enter()
+                    .append("path")
+                    .attr("d", link)
+                    .attr("class", "curve")
+                    .style("fill", "none")
+                    .attr('id', function(d){return d.id})
+                    .style("stroke-width", spatialsankey.link().width());
+                
+                // Remove old links
+                beziers.exit().remove();
+                // Hide inactive nodes
+                var circleUnderMouse = this;
+                circs.transition().style('opacity',function () {
+                    return (this === circleUnderMouse) ? 0.7 : 0.5;
+                });
+            }
+
+
+            var mouseout = function(d) {
+                // Remove links
+                linklayer.selectAll("path").remove();
+                // Show all nodes
+                circs.transition().style('opacity', 0.7);
+            };
+
+            // Draw nodes
+            var node = spatialsankey.node();
+            var circs = nodelayer.selectAll("circle")
+                .data(spatialsankey.nodes())
+                .enter()
+                .append("circle")
+                .attr("d", node.geopath)
+                .attr("cx", node.cx)
+                .attr("cy", node.cy)
+                .attr("r", node.r)
+                .attr("opacity", 0.7)
+                .style("fill", node.fill)
+                .style("display", node.display)
+                .on("mouseover", mouseover)
+                .on("mouseout", mouseout)
+            
+                // Adopt size of drawn objects after leaflet zoom reset
+            var zoomend = function(){
+                linklayer.selectAll("path").attr("d", spatialsankey.link());
+
+                circs.attr("cx", node.cx)
+                    .attr("cy", node.cy);
+            };
+        
+            map.on("zoomend", zoomend);
+        });
+    });
+</script>
+</body>
+</html>
