@@ -183,7 +183,7 @@
       spatialsankey.node = function(options){
         // Node styles
         // Range of node circles (set min and max equal for constant circle size)
-        var node_radius_range = {min: 1, max: 20};
+        var node_radius_range = {min: 10, max: 20};
         // Range for color coding according to flow size (set colors for single coloring)
         node_color_range = ["red", "green"];
         // Customize link styles using options
