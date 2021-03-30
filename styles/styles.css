@@ -39,3 +39,16 @@ path:hover {
 
 }
 
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    padding: 5px;				
+    font: 12px sans-serif;		
+    background: black;
+    color: white;	
+    border: 0px;		
+    border-radius: 4px;			
+    pointer-events: none;
+    z-index: 500;			
+}
+

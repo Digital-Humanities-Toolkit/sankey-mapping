@@ -14,7 +14,7 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
   ></script>
   
-<script src="scripts/spatialsankey.js"></script>
+<script src="scripts/spatialsankey.js?t=10"></script>
 
 </head>
 
@@ -73,12 +73,26 @@
                 .lmap(map)
                 .nodes(nodes.features)
                 .links(links);
+
+            // Define the div for the tooltip
+            var div = d3.select("#map").append("div")	
+                .attr("class", "tooltip")				
+                .style("opacity", 0);
             
                 var mouseover = function (d) {
                 // Get link data for this node
                 var nodelinks = spatialsankey.links().filter(function (link) {
                     return link.source == d.id;
-                });
+                }); 
+                
+                //transition titles in and out
+                div.transition()		
+                    .duration(200)		
+                    .style("opacity", .9);		
+                div	.html(d.properties.name)	
+                    .style("left", (d3.event.pageX) + "px")		
+                    .style("top", (d3.event.pageY - 28) + "px");
+
                 // Add data to link layer
                 var beziers = linklayer.selectAll("path").data(nodelinks);
                 link = spatialsankey.link({'use_arcs': true, 'flip': false});
@@ -94,11 +108,17 @@
                 
                 // Remove old links
                 beziers.exit().remove();
-                // Hide inactive nodes
-                //var circleUnderMouse = this;
-                circs.transition().style('opacity',function () {
+
+               
+                
+                // circle opacity change
+                var circleUnderMouse = this;
+                circs.transition().style('opacity',function () {                    
                     return (this === circleUnderMouse) ? 0.7 : 0.5;
                 });
+                
+                    
+
             }
 
 
@@ -111,6 +131,7 @@
 
             // Draw nodes
             var node = spatialsankey.node();
+            
             var circs = nodelayer.selectAll("circle")
                 .data(spatialsankey.nodes())
                 .enter()
